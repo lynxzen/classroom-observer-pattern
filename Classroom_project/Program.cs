@@ -1,6 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 
+public interface IObservable<T> {
+    IDisposable Subscribe(IObserver<T> observer);
+}
+
+public interface IObserver<T> {
+    void OnNext(T value);
+    void onError(Exception error);
+    void onComplete();
+}
+
 class Assignment {
     public string? ID { get; set; }
 }
@@ -13,21 +23,24 @@ class Student {
     public string? Name { get; set; }
 }
 
-class Classroom : IObservable<Student> {
-    private List<IObserver<Student>> students;
-    private List<Assignment> assignments;
+public class Unsubscriber<Student> : IDisposable {
+    private List<IObserver<Student>> _observers;
+    private IObserver<Student> _observer;
 
-    public Classroom() {
-        students = new List<IObserver<Student>>();
-        assignments = new List<Assignment>();
+    public Unsubscriber(List<IObserver<Student>> observers, IObserver<Student> observer) {
+        _observers = observers;
+        _observer = observer;
     }
 
-    public IDisposable Subscribe(IObserver<Student> student) {
-        if (!students.Contains(student)) {
-            students.Add(student);
+    public void Dispose() {
+        if (_observers.Contains(_observer)) {
+            _observers.Remove(_observer);
         }
-        return new Unsubscriber<Student>(students, student);
     }
+}
+
+class Classroom : IObservable<> {
+
 }
 
 class Program {
