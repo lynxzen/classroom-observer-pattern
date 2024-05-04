@@ -1,0 +1,15 @@
+/home/joshuavargas/school/csci152/classroom-observer-pattern/Classroom_project/bin/Debug/net6.0/Classroom_project
+/home/joshuavargas/school/csci152/classroom-observer-pattern/Classroom_project/bin/Debug/net6.0/Classroom_project.deps.json
+/home/joshuavargas/school/csci152/classroom-observer-pattern/Classroom_project/bin/Debug/net6.0/Classroom_project.runtimeconfig.json
+/home/joshuavargas/school/csci152/classroom-observer-pattern/Classroom_project/bin/Debug/net6.0/Classroom_project.dll
+/home/joshuavargas/school/csci152/classroom-observer-pattern/Classroom_project/bin/Debug/net6.0/ref/Classroom_project.dll
+/home/joshuavargas/school/csci152/classroom-observer-pattern/Classroom_project/bin/Debug/net6.0/Classroom_project.pdb
+/home/joshuavargas/school/csci152/classroom-observer-pattern/Classroom_project/obj/Debug/net6.0/Classroom_project.csproj.AssemblyReference.cache
+/home/joshuavargas/school/csci152/classroom-observer-pattern/Classroom_project/obj/Debug/net6.0/Classroom_project.GeneratedMSBuildEditorConfig.editorconfig
+/home/joshuavargas/school/csci152/classroom-observer-pattern/Classroom_project/obj/Debug/net6.0/Classroom_project.AssemblyInfoInputs.cache
+/home/joshuavargas/school/csci152/classroom-observer-pattern/Classroom_project/obj/Debug/net6.0/Classroom_project.AssemblyInfo.cs
+/home/joshuavargas/school/csci152/classroom-observer-pattern/Classroom_project/obj/Debug/net6.0/Classroom_project.csproj.CoreCompileInputs.cache
+/home/joshuavargas/school/csci152/classroom-observer-pattern/Classroom_project/obj/Debug/net6.0/Classroom_project.dll
+/home/joshuavargas/school/csci152/classroom-observer-pattern/Classroom_project/obj/Debug/net6.0/ref/Classroom_project.dll
+/home/joshuavargas/school/csci152/classroom-observer-pattern/Classroom_project/obj/Debug/net6.0/Classroom_project.pdb
+/home/joshuavargas/school/csci152/classroom-observer-pattern/Classroom_project/obj/Debug/net6.0/Classroom_project.genruntimeconfig.cache

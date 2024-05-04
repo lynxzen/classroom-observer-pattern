@@ -11,45 +11,28 @@ public interface IObserver<T> {
     void onComplete();
 }
 
-class Assignment {
-    public string? ID { get; set; }
+class Teacher {
+    public string name;
+    public List<Classroom> classrooms = new List<Classroom>();
 }
 
-class Teacher {
-    public string? Name { get; set; }
+class Classroom {
+    public string classroomName;
+    public List<Assignment> assignments = new List<Assignment>();
+    public List<Student> students = new List<Student>();
 }
 
 class Student {
-    public string? Name { get; set; }
+    public string name;
 }
 
-public class Unsubscriber<Student> : IDisposable {
-    private List<IObserver<Student>> _observers;
-    private IObserver<Student> _observer;
-
-    public Unsubscriber(List<IObserver<Student>> observers, IObserver<Student> observer) {
-        _observers = observers;
-        _observer = observer;
-    }
-
-    public void Dispose() {
-        if (_observers.Contains(_observer)) {
-            _observers.Remove(_observer);
-        }
-    }
-}
-
-class Classroom : IObservable<> {
-
+class Assignment {
+    public string assignmentOrigin;
+    public string name;
 }
 
 class Program {
     static void Main(string[] args) {
-        Console.WriteLine("Hello World!");
 
-        Classroom classroom = new Classroom();
-        Teacher teacher = new Teacher();
-        teacher.Name = "Josh";
-        Console.WriteLine(teacher.Name);
     }
 }
