@@ -11,15 +11,23 @@ class Teacher : ISchoolAdmin {
     }
 
     public void CreateAssignment() {
-        Console.WriteLine("Enter the origin of the assignment:");
+        Console.WriteLine("Enter the class name for the assignment:");
         string fromClass = Console.ReadLine();
-        Console.WriteLine("Enter the name of the assignment:");
-        string name = Console.ReadLine();
-        Console.WriteLine("Enter the questions:");
-        string questions = Console.ReadLine();
-        Console.WriteLine("Enter the answers:");
-        string answers = Console.ReadLine();
-        Assignment newAssignment = new Assignment(fromClass, name, questions, answers);
+        Classroom classToAddAssignment = FindClassByName(fromClass);
+        if (classToAddAssignment != null) {
+            Console.WriteLine("Enter the name of the assignment:");
+            string assignmentName = Console.ReadLine();
+            Console.WriteLine("Enter the questions:");
+            string questions = Console.ReadLine();
+            Console.WriteLine("Enter the answers:");
+            string answers = Console.ReadLine();
+            Assignment newAssignment = new Assignment(fromClass, assignmentName, questions, answers);
+            classToAddAssignment.AddAssignment(newAssignment);
+            Console.WriteLine("Assignment added successfully.");
+        } 
+        else {
+            Console.WriteLine($"No class found with the name {fromClass}. Assignment not created.");
+        }
     }
 
     public void CreateClass() {
@@ -45,5 +53,9 @@ class Teacher : ISchoolAdmin {
             Console.WriteLine($"  Number of Assignments: {classroom.Assignments.Count}");
             Console.WriteLine($"  Number of Students: {classroom.Students.Count}");
         }
+    }
+
+    public Classroom FindClassByName(string className) {
+        return classes.FirstOrDefault(c => c.ClassroomName.Equals(className, StringComparison.OrdinalIgnoreCase));
     }
 }
