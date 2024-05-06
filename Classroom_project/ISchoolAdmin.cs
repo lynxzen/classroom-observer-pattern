@@ -1,0 +1,3 @@
+interface ISchoolAdmin {
+    void ListClasses();
+}
