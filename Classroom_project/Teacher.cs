@@ -1,4 +1,4 @@
-public class Teacher : ISchoolAdmin, ITextInterface {
+public class Teacher : ISchoolAdmin {
     private string name;
     public string Name {
         get { return name; }
@@ -13,6 +13,7 @@ public class Teacher : ISchoolAdmin, ITextInterface {
     public void CreateAssignment() {
         Console.WriteLine("Enter the class name for the assignment:");
         string fromClass = Console.ReadLine();
+        //TODO do numbered selection of assignments instead of entering the name
         Classroom classToAddAssignment = FindClassByName(fromClass);
         if (classToAddAssignment != null) {
             Console.WriteLine("Enter the name of the assignment:");
@@ -47,60 +48,11 @@ public class Teacher : ISchoolAdmin, ITextInterface {
 
     public void ListClasses() {
         if (classes.Count == 0) {
-            Console.WriteLine($"\n{Name} is not teaching any classes currently.");
-            Utilities.PressToContinue();
+            Console.WriteLine($"{Name} is not teaching any classes currently.");
             return;
         }
-
-        Console.WriteLine($"\n{Name} is teaching the following classes:");
-        foreach (Classroom classroom in classes) {
-            Console.WriteLine($"\nClassroom Name: {classroom.ClassroomName}");
-            Console.WriteLine($"  Number of Assignments: {classroom.Assignments.Count}");
-            Console.WriteLine($"  Number of Students: {classroom.Students.Count}");
-        }
-        Utilities.PressToContinue();
-    }
-
-
-    public void TextInterface() {
-        bool keepRunning = true;
-        while (keepRunning) {
-            Console.Clear(); // Clears the console for a cleaner interface
-            Console.WriteLine("+-----------------------------------+");
-            Console.WriteLine("|            Teacher Menu           |");
-            Console.WriteLine("+-----------------------------------+");
-            Console.WriteLine("| 1. Create an Assignment           |");
-            Console.WriteLine("| 2. Create a Class                 |");
-            Console.WriteLine("| 3. List Classes                   |");
-            Console.WriteLine("| 4. Exit                           |");
-            Console.WriteLine("+-----------------------------------+");
-            Console.WriteLine("Select an option by entering a number:");
-
-            string option = Console.ReadLine();
-
-            switch (option) {
-                case "1":
-                    CreateAssignment();
-                    break;
-                case "2":
-                    CreateClass();
-                    break;
-                case "3":
-                    ListClasses();
-                    break;
-                case "4":
-                    Console.WriteLine("Exiting menu.");
-                    keepRunning = false;
-                    break;
-                default:
-                    Console.WriteLine("Invalid option, please try again.");
-                    break;
-            }
-
-            if (keepRunning) {
-                Console.WriteLine("Press any key to return to the menu...");
-                Console.ReadKey();
-            }
+        for (int i = 0; i < classes.Count; i++) {
+            Console.WriteLine($"{i+1}. Class Title: {classes[i].ClassroomName}\tTaught by: {Name}");
         }
     }
 
