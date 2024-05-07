@@ -1,4 +1,4 @@
-class Assignment {
+public class Assignment {
     public string FromClass { get; set; }
     public string Name { get; set; }
     public string Questions { get; set; }

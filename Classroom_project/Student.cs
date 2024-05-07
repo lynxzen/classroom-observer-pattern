@@ -1,4 +1,4 @@
-class Student : IObserver<Assignment> {
+public class Student : IObserver<Assignment>, ITextInterface {
     private string name;
     public string Name {
         get { return name; }
@@ -15,6 +15,10 @@ class Student : IObserver<Assignment> {
 
     public void OnComplete() {
         Console.WriteLine($"{Name} has completed receiving assignments.");
+    }
+
+    public void TextInterface() {
+        Console.WriteLine("Student");
     }
 }
 

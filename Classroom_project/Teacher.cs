@@ -1,4 +1,4 @@
-class Teacher : ISchoolAdmin {
+public class Teacher : ISchoolAdmin, ITextInterface {
     private string name;
     public string Name {
         get { return name; }
@@ -24,17 +24,21 @@ class Teacher : ISchoolAdmin {
             Assignment newAssignment = new Assignment(fromClass, assignmentName, questions, answers);
             classToAddAssignment.AddAssignment(newAssignment);
             Console.WriteLine("Assignment added successfully.");
+            Utilities.PressToContinue();
         } 
         else {
             Console.WriteLine($"No class found with the name {fromClass}. Assignment not created.");
+            Utilities.PressToContinue();
         }
     }
 
     public void CreateClass() {
-        Console.WriteLine("Enter a class title:");
+        Console.WriteLine("\nEnter a class title:");
         string NewClassroomName = Console.ReadLine();
         Classroom NewClass = new Classroom() { ClassroomName = NewClassroomName };
         classes.Add(NewClass);
+        Console.WriteLine($"{Name} started a new class: {NewClassroomName}");
+        Utilities.PressToContinue();
     }
 
     public void AddClass(Classroom classroom) {
@@ -43,15 +47,60 @@ class Teacher : ISchoolAdmin {
 
     public void ListClasses() {
         if (classes.Count == 0) {
-            Console.WriteLine($"{Name} is not teaching any classes currently.");
+            Console.WriteLine($"\n{Name} is not teaching any classes currently.");
+            Utilities.PressToContinue();
             return;
         }
 
-        Console.WriteLine($"{Name} is teaching the following classes:");
+        Console.WriteLine($"\n{Name} is teaching the following classes:");
         foreach (Classroom classroom in classes) {
-            Console.WriteLine($"Classroom Name: {classroom.ClassroomName}");
+            Console.WriteLine($"\nClassroom Name: {classroom.ClassroomName}");
             Console.WriteLine($"  Number of Assignments: {classroom.Assignments.Count}");
             Console.WriteLine($"  Number of Students: {classroom.Students.Count}");
+        }
+        Utilities.PressToContinue();
+    }
+
+
+    public void TextInterface() {
+        bool keepRunning = true;
+        while (keepRunning) {
+            Console.Clear(); // Clears the console for a cleaner interface
+            Console.WriteLine("+-----------------------------------+");
+            Console.WriteLine("|            Teacher Menu           |");
+            Console.WriteLine("+-----------------------------------+");
+            Console.WriteLine("| 1. Create an Assignment           |");
+            Console.WriteLine("| 2. Create a Class                 |");
+            Console.WriteLine("| 3. List Classes                   |");
+            Console.WriteLine("| 4. Exit                           |");
+            Console.WriteLine("+-----------------------------------+");
+            Console.WriteLine("Select an option by entering a number:");
+
+            string option = Console.ReadLine();
+
+            switch (option) {
+                case "1":
+                    CreateAssignment();
+                    break;
+                case "2":
+                    CreateClass();
+                    break;
+                case "3":
+                    ListClasses();
+                    break;
+                case "4":
+                    Console.WriteLine("Exiting menu.");
+                    keepRunning = false;
+                    break;
+                default:
+                    Console.WriteLine("Invalid option, please try again.");
+                    break;
+            }
+
+            if (keepRunning) {
+                Console.WriteLine("Press any key to return to the menu...");
+                Console.ReadKey();
+            }
         }
     }
 

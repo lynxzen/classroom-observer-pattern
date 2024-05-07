@@ -1,4 +1,4 @@
-class Classroom : IObservable<Assignment> {
+public class Classroom : IObservable<Assignment> {
     private string classroomName;
     public string ClassroomName {
         get { return classroomName; }

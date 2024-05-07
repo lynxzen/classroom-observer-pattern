@@ -3,44 +3,37 @@ using System.Collections.Generic;
 
 class Program {
     static void Main(string[] args) {
-        School school = new School();
-        bool continueRunning = true;
+        List<School> schools = new List<School>(); // Assuming this is initialized correctly
+        Stack<IMenu> menuStack = new Stack<IMenu>();
+        IMenu currentMenu = new CanvasMenu(schools);
+        menuStack.Push(currentMenu);
 
-        while (continueRunning) {
-            Console.WriteLine("Choose an option:");
-            Console.WriteLine("1. Add a Teacher");
-            Console.WriteLine("2. Add a Class");
-            Console.WriteLine("3. Add a Student to a Class");
-            Console.WriteLine("4. Create an Assignment");
-            Console.WriteLine("5. List All Classes");
-            Console.WriteLine("6. Exit");
+        while (menuStack.Any()) {
+            Console.Clear();
+            currentMenu.DisplayMenu();
+            Console.Write("Choose an option: ");
+            string option = Console.ReadLine();
+            IMenu nextMenu = currentMenu.HandleMenuInput(option);
 
-            string choice = Console.ReadLine();
-
-            switch (choice) {
-                case "1":
-                    AddTeacher(school);
-                    break;
-                case "2":
-                    AddClass(school);
-                    break;
-                case "3":
-                    AddStudent(school);
-                    break;
-                case "4":
-                    CreateAssignmentForClass(school);
-                    break;
-                case "5":
-                    school.ListClasses();
-                    break;
-                case "6":
-                    continueRunning = false;
-                    break;
-                default:
-                    Console.WriteLine("Invalid option, please try again.");
-                    break;
+            if (nextMenu == null) {
+                menuStack.Pop();
+                if (menuStack.Any()) {
+                    currentMenu = menuStack.Peek();
+                } 
+                else {
+                    break; 
+                }
+            } 
+            else if (nextMenu != currentMenu) {
+                currentMenu = nextMenu;
+                menuStack.Push(currentMenu);
             }
         }
+    }
+
+    static void PressToContinue() {
+        Console.WriteLine("Press any key to continue!");
+        Console.ReadKey();
     }
 
     static void AddTeacher(School school) {

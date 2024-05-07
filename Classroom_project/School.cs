@@ -1,4 +1,10 @@
-class School : ISchoolAdmin {
+public class School : ISchoolAdmin {
+    private string name;
+    public string Name {
+        get { return name; }
+        set { name = value; }
+    }
+
     private List<Teacher> teachers = new List<Teacher>();
     public List<Teacher> Teachers {
         get { return teachers; }
@@ -8,10 +14,23 @@ class School : ISchoolAdmin {
         teachers.Add(teacher);
     }
 
+    public void CreateTeacher() {
+        Console.WriteLine("Enter the teacher's name:");
+        string name = Console.ReadLine();
+        Teacher newTeacher = new Teacher() { Name = name };
+        teachers.Add(newTeacher);
+        Console.WriteLine("Teacher added successfully.");
+    }
+
     public void ListTeachers() {
-        foreach (Teacher teacher in teachers) {
-            Console.WriteLine("All teachers in the school:");
-            Console.WriteLine(teacher.Name);
+        if (teachers.Count == 0) {
+            Console.WriteLine("No teachers in school.");
+        }
+        else {
+            Console.WriteLine("\nAll teachers in the school:");
+            for (int i = 0; i < teachers.Count; i++) {
+                Console.WriteLine($"{i + 1}. {teachers[i].Name}");
+            }
         }
     }
 
