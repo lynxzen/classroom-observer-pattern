@@ -19,6 +19,12 @@ public class Student : IObserver<Assignment> {
         get { return assignments; }
     }
 
+    private List<Assignment> completedAssignments = new List<Assignment>();
+    public List<Assignment> CompletedAssignments {
+        get { return completedAssignments; }
+    }
+
+
     public void ListAssignments() {
         if (Assignments.Count == 0) {
             Console.WriteLine("You have no assignments! :)");
@@ -27,7 +33,7 @@ public class Student : IObserver<Assignment> {
 
         Console.WriteLine("You currently have the following assignments:");
         for (int i = 0; i < Assignments.Count; i++) {
-            Console.WriteLine($"{i+1}. {Assignments[i].Name}");
+            Console.WriteLine($"{i+1}. {Assignments[i].Name}\t from your {Assignments[i].FromClass} class");
         }
     }
 

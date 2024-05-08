@@ -10,28 +10,40 @@ public class Classroom : IObservable<Assignment> {
         get { return assignments; }
     }
 
-    private List<IObserver<Assignment>> students = new List<IObserver<Assignment>>();
-    public List<IObserver<Assignment>> Students {
+    private List<Student> students = new List<Student>();
+    public List<Student> Students {
         get { return students; }
+    }
+
+    private List<IObserver<Assignment>> studentsObservers = new List<IObserver<Assignment>>();
+    public List<IObserver<Assignment>> StudentsObservers {
+        get { return studentsObservers; }
     }
 
     // When an assignment is created, tell all the students
     public void AddAssignment(Assignment assignment) {
         assignments.Add(assignment);
-        foreach (var student in students) {
+        foreach (var student in studentsObservers) {
             student.OnNext(assignment);
+        }
+    }
+
+    public void ListStudents() {
+        Console.WriteLine($"Students in the {ClassroomName} class:");
+        for (int i = 0; i < Students.Count; i++) {
+            Console.WriteLine($"{i+1}. {Students[i].Name}");
         }
     }
 
     // Subscribe student to the class and tell them about all the stuff they gotta do :(
     public IDisposable Subscribe(IObserver<Assignment> student) {
-        if (!students.Contains(student)) {
-            students.Add(student);
+        if (!studentsObservers.Contains(student)) {
+            studentsObservers.Add(student);
             foreach (Assignment assignment in assignments) {
                 student.OnNext(assignment);
             }
         }
-        return new Unsubscriber(students, student);
+        return new Unsubscriber(studentsObservers, student);
     } 
 
     private class Unsubscriber : IDisposable {

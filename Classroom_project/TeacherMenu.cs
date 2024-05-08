@@ -34,6 +34,7 @@ public class TeacherMenu : IMenu {
                 return this;
             case "4":
                 //TODO implement this
+                GradeHomework();
                 return this;
             case "5":
                 return null;
@@ -42,5 +43,10 @@ public class TeacherMenu : IMenu {
                 return this;
         }
         return this;
+    }
+
+    public void GradeHomework() {
+        teacher.GradeHomework();
+        Utilities.PressToContinue();
     }
 }

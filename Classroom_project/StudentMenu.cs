@@ -31,6 +31,7 @@ public class StudentMenu : IMenu {
                 Utilities.PressToContinue();
                 return this;
             case "4":
+                SubmitHomework();
                 return null;
             default:
                 Console.WriteLine("\nInvalid option!");
@@ -74,7 +75,6 @@ public class StudentMenu : IMenu {
             return;
         }
 
-        // Convert 1-based index to 0-based index for accessing arrays or lists
         teacherIndex -= 1;
         classIndex -= 1;
 
@@ -88,11 +88,19 @@ public class StudentMenu : IMenu {
             return;
         }
 
-        // Assuming you have a way to display details about the class
         var selectedClass = student.SchoolAttending.Teachers[teacherIndex].Classes[classIndex];
         Console.WriteLine($"You selected: {selectedClass.ClassroomName}, taught by {student.SchoolAttending.Teachers[teacherIndex].Name}"); 
 
         selectedClass.Subscribe(student);
+        selectedClass.Students.Add(student);
     }
 
+    public void SubmitHomework() {
+        foreach (Assignment assignment in student.Assignments) {
+            if (assignment.isCompleted) {
+                assignment.StudentName = student.Name;
+                student.CompletedAssignments.Add(assignment);                
+            }
+        }
+    }
 }

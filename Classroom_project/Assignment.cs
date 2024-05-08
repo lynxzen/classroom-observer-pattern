@@ -1,13 +1,15 @@
 public class Assignment {
     public string FromClass { get; set; }
+    public string StudentName { get; set; }
     public string Name { get; set; }
-    public string Questions { get; set; }
-    public string Answers { get; set; }
+    public List<IQuestion> Questions { get; set; }
+    public List<string> StudentAnswers { get; set; }
+    
+    public bool isCompleted = false;
 
-    public Assignment(string fromClass, string name, string questions, string answers) {
+    public Assignment(string fromClass, string name, List<IQuestion> questionsAndAnswers) {
         FromClass = fromClass;
         Name = name;
-        Questions = questions;
-        Answers = answers;
+        Questions = questionsAndAnswers;
     }
 }
