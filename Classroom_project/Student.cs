@@ -24,7 +24,6 @@ public class Student : IObserver<Assignment> {
         get { return completedAssignments; }
     }
 
-
     public void ListAssignments() {
         if (Assignments.Count == 0) {
             Console.WriteLine("You have no assignments! :)");
@@ -34,6 +33,12 @@ public class Student : IObserver<Assignment> {
         Console.WriteLine("You currently have the following assignments:");
         for (int i = 0; i < Assignments.Count; i++) {
             Console.WriteLine($"{i+1}. {Assignments[i].Name}\t from your {Assignments[i].FromClass} class");
+        }
+    }
+
+    public void ListGrades() {
+        foreach (Assignment assignment in CompletedAssignments) {
+            Console.WriteLine($"Assignment: {assignment.Name}\t Score: {assignment.score}");
         }
     }
 
@@ -48,10 +53,6 @@ public class Student : IObserver<Assignment> {
 
     public void OnComplete() {
         Console.WriteLine($"{Name} has completed receiving assignments.");
-    }
-
-    public void TextInterface() {
-        Console.WriteLine("Student");
     }
 }
 

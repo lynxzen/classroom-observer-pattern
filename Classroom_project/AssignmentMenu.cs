@@ -13,13 +13,14 @@ public class AssignmentMenu : IMenu {
         Console.WriteLine();
         foreach (var question in assignment.Questions) {
             question.Display();
+            Console.WriteLine("\n1) Answer Question 2) Submit");
         }
     }
 
     public IMenu HandleMenuInput(string option) {
         switch (option) {
             case "1":
-                CollectAnswers();
+                AnswerQuestion();
                 return this;
             case "2":
                 return SubmitHomework();
@@ -29,9 +30,9 @@ public class AssignmentMenu : IMenu {
         }
     }
 
-    private void CollectAnswers() {
+    private void AnswerQuestion() {
         for (int i = 0; i < assignment.Questions.Count; i++) {
-            Console.WriteLine("What answer do you select?:");
+            Console.WriteLine("\nWhat answer do you select?:");
             string input = Console.ReadLine();
             if (!int.TryParse(input, out int choice) || choice < 1 || choice > assignment.Questions[i].Options.Count) {
                 Console.WriteLine("Invalid selection. Please try again.");

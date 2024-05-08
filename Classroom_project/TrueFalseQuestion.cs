@@ -1,7 +1,7 @@
 public class TrueFalseQuestion : IQuestion {
     public string Question { get; set; }
     private int correctAnswerChoice;
-    public List<string> Options { get; set; }
+    public List<string> Options { get; set; } = new List<string> { "True", "False" };
 
     public string Answer {
         get => Options[correctAnswerChoice];
@@ -15,9 +15,8 @@ public class TrueFalseQuestion : IQuestion {
         }
     }
 
-    public TrueFalseQuestion(string question, List<string> options, int correctAnswerChoice) {
+    public TrueFalseQuestion(string question, int correctAnswerChoice) {
         Question = question;
-        Options = options;
         this.correctAnswerChoice = correctAnswerChoice;
     }
 

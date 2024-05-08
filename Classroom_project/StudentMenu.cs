@@ -11,8 +11,9 @@ public class StudentMenu : IMenu {
         Console.WriteLine("+-----------------------------------+");
         Console.WriteLine("| 1. List Assignments               |");
         Console.WriteLine("| 2. Do Homework                    |");
-        Console.WriteLine("| 3. Enroll In Class                |");
-        Console.WriteLine("| 4. Back                           |");
+        Console.WriteLine("| 3. View Grades                    |");
+        Console.WriteLine("| 4. Enroll In Class                |");
+        Console.WriteLine("| 5. Back                           |");
         Console.WriteLine("+-----------------------------------+");
     }
 
@@ -27,10 +28,13 @@ public class StudentMenu : IMenu {
             case "2":
                 return DoHomework();
             case "3":
+                ViewGrades();
+                return this;
+            case "4":
                 EnrollInClass();
                 Utilities.PressToContinue();
                 return this;
-            case "4":
+            case "5":
                 SubmitHomework();
                 return null;
             default:
@@ -58,10 +62,15 @@ public class StudentMenu : IMenu {
 
     }
 
+    public void ViewGrades() {
+        student.ListGrades();
+        Utilities.PressToContinue();
+    }
+
     public void EnrollInClass() {
         student.SchoolAttending.ListClasses();
         //TODO rewrite this
-        Console.WriteLine("Enter the class identifier (e.g., '1-1' for the first teacher's first class):");
+        Console.WriteLine("\nEnter the class number:");
         string input = Console.ReadLine();
         string[] parts = input.Split('-');
 

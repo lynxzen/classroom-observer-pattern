@@ -40,7 +40,7 @@ public class CanvasMenu : IMenu {
         }
 
         ListSchools();
-        Console.WriteLine("Select a school by number:");
+        Console.WriteLine("\nSelect a school by number:");
         //TODO rewrite this
         if (!int.TryParse(Console.ReadLine(), out int index) || index < 1 || index > schools.Count) {
             Console.WriteLine("Invalid selection. Please try again.");
@@ -51,7 +51,7 @@ public class CanvasMenu : IMenu {
     }
 
     public IMenu CreateSchool() {
-        Console.WriteLine("Enter the name of the school you wish to create:");
+        Console.WriteLine("\nEnter the name of the school you wish to create:");
         string schoolName = Console.ReadLine();
         if (string.IsNullOrWhiteSpace(schoolName)) {
             Console.WriteLine("Invalid school name. Please try again.");
@@ -60,7 +60,7 @@ public class CanvasMenu : IMenu {
 
         School newSchool = new School() { Name = schoolName };
         schools.Add(newSchool);
-        Console.WriteLine($"School '{schoolName}' added successfully.");
+        Console.WriteLine($"\nSchool '{schoolName}' added successfully.");
         Console.WriteLine("Press any key to continue...");
         Console.ReadKey();
         return this;
