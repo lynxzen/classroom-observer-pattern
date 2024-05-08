@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 class Program {
     static void Main(string[] args) {
-        List<School> schools = new List<School>(); // Assuming this is initialized correctly
+        List<School> schools = new List<School>(); 
         Stack<IMenu> menuStack = new Stack<IMenu>();
         IMenu currentMenu = new CanvasMenu(schools);
         menuStack.Push(currentMenu);
