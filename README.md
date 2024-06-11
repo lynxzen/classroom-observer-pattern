@@ -1,5 +1,5 @@
 # classroom-observer-pattern
-This is an assignment I did where I needed to implement a system similar to what our college campus uses (Canvas). As part of this assignment, we needed to implement this system while using the observer and composite design patterns.
+This is an assignment I did where I needed to implement a school management system similar to Canvas. As part of this assignment, we needed to implement this system while using the observer and composite design patterns.
 
 <img width="315" alt="image" src="https://github.com/lynxzen/classroom-observer-pattern/assets/32289143/d43b35c5-449e-4747-acc3-bafe6257b56b">
 
